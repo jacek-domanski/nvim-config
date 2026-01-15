@@ -672,7 +672,7 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -1017,6 +1017,35 @@ require('lazy').setup({
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
+
+-- === C / clangd semantic highlighting tuned for teide-darker ===
+
+-- Function call
+vim.api.nvim_set_hl(0, '@lsp.type.function', {
+  fg = '#7af7cf', -- soft green
+})
+
+-- Function definition
+vim.api.nvim_set_hl(0, '@lsp.typemod.function.definition', {
+  fg = '#7aa2f7', -- calm blue
+  bold = true,
+})
+
+-- Function declarations
+vim.api.nvim_set_hl(0, '@lsp.typemod.function.declaration', {
+  fg = '#89b4fa',
+  italic = true,
+})
+
+-- Types (struct, typedef, enum)
+vim.api.nvim_set_hl(0, '@lsp.type.type', {
+  fg = '#7dcfff',
+})
+
+-- Makros
+vim.api.nvim_set_hl(0, '@lsp.type.macro', {
+  fg = '#f7768e',
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
